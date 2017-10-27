@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Open File URL -->
+    <meta property="og:url" content="https://mb.api.cloud.nifty.com/2013-09-01/applications/YOUR_NCMB_APPLICATION_ID/publicFiles/" />
+    <link rel="stylesheet" href="ncmb_takano.min.css" type="text/css" media="all" />
+  	<link rel="stylesheet" href="jquery.mobile.icons.min.css" type="text/css" media="all" />
+  	<link rel="stylesheet" href="jquery.mobile.structure-1.4.5.min.css" />
+  	<script src="jquery-1.11.1.min.js"></script>
+  	<script src="jquery.mobile-1.4.5.min.js"></script>
+    <title>Wedding Pj</title>
+    <script type="text/javascript" src="ncmb.min.js"></script>
+    <script src="wedding_project_web_app.js"></script>
+  </head>
+  <body>
+    <!-- Top Page-->
+    <div id="TopPage" data-role="page" data-theme="a">
+      <div data-role="header" data-position="inline">
+        <h1>Wedding Pj</h1>
+      </div>
+      <div data-role="content" data-theme="a">
+        <label>Please write your name.</label>
+        <input id="name" type="text" placeholder="Your name">
+        <label>Please select your photo.</label>
+        <div>
+          <form>
+            <input id="photo" type="file" accept="image/*">
+          </form>
+          <center><div id="preview"></div></center>
+        </div>
+        <input id="registBtn" type="button" value="Regist">
+      </div>
+    </div>
+    <!-- Message Page-->
+    <div id="MessagePage" data-role="page" data-theme="a">
+      <div data-role="header" data-position="inline">
+        <h1>Wedding Pj</h1>
+      </div>
+      <div data-role="content" data-theme="a">
+        <center>
+          <table>
+            <tr>Send message button
+              <th width="48%"><input id="jpBtn" type="button" value="おめでとう"></th>
+              <th width="48%"><input id="vnBtn" type="button" value="xin chúc mừng"></th>
+            </tr>
+          </table>
+          <table>
+            <tr>Send message
+              <th width="90%"><input id="message" type="text" placeholder="Please write your message here."></th>
+              <th><input id="messageBtn" type="button" value="send"></th>
+            </tr>
+          </table>
+        </center>
+        <center><img src="takano.png" width="100%"></center>
+      </div>
+    </div>
+  </body>
+</html>
