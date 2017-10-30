@@ -15,6 +15,9 @@ var ncmb = new NCMB(applicationKey, clientKey);
 var name = "";
 var photoName = "";
 
+// img flag
+var imgFlag = false;
+
 $(function() {
     $.mobile.defaultPageTransition = 'none';
     $("#registBtn").click(onRegistBtn);
@@ -36,6 +39,7 @@ $(function() {
 
         // ファイル読み込みが完了した際のイベント登録
         reader.onload = (function(file) {
+            imgFlag = true;
             return function(e) {
             //既存のプレビューを削除
             $("#preview").empty();
@@ -89,20 +93,21 @@ function toBlob(base64, mime_type) {
 
 function onRegistBtn() {
     name = $("#name").val()
-    var img = document.getElementById('photo_image');
-    var photoType = $("#photo")[0].files[0].type;
-    var base64 = ImageToBase64(img, photoType);
-    var photoData = toBlob(base64, photoType);
-    var photoVal = $("#photo").val();
-
     // 入力チェック
     if (name == "") {
         alert("Please write your name.");
         return;
-    } else if (photoVal == "") {
+    }
+
+    if (imgFlag == false) {
         alert("Please select your photo.");
         return;
     }
+
+    var img = document.getElementById('photo_image');
+    var photoType = $("#photo")[0].files[0].type;
+    var base64 = ImageToBase64(img, photoType);
+    var photoData = toBlob(base64, photoType);
 
     // loading の表示
     $.mobile.loading('show', {
@@ -115,7 +120,12 @@ function onRegistBtn() {
 
     // uuid
     var uuid = makeUUID();
-    photoName = "Photo_"+ uuid + $("#photo")[0].files[0].name;
+    // fileName
+    var fileName = $("#photo")[0].files[0].name;
+    var sp = fileName.split('.');
+    fileName_type = sp[sp.length-1];
+
+    photoName = "Photo_"+ uuid + "." + fileName_type;
 
     // 写真アップロード
     ncmb.File.upload(photoName, photoData)
